@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --text-primary: #0f172a;
+    --border-color: rgba(226, 232, 240, 0.8);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(203, 213, 225, 0.5);
+    --accent-glow: rgba(14, 165, 233, 0.15);
+  }
+
+  .dark {
+    --bg-primary: #090d16;
+    --bg-secondary: #0f172a;
+    --text-primary: #f8fafc;
+    --border-color: rgba(30, 41, 59, 0.8);
+    --glass-bg: rgba(15, 23, 42, 0.75);
+    --glass-border: rgba(51, 65, 85, 0.5);
+    --accent-glow: rgba(0, 240, 255, 0.2);
+  }
+}
+
+/* Glassmorphism styling */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(14, 165, 233, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.2);
+}
+
+.dark .glass-panel-hover:hover {
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.25);
+}
+
+/* Cyber Scanning Line overlay */
+.scanline-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline-container::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(0, 240, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.7;
+  pointer-events: none;
+  animation: scanLine 3s linear infinite;
+}
+
+/* Custom Range Input Slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-track {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(148, 163, 184, 0.3);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #0284c7;
+  cursor: pointer;
+  margin-top: -6px;
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
+  transition: all 0.2s ease;
+}
+
+.dark input[type="range"]::-webkit-slider-thumb {
+  background: #00f0ff;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Radial Gradient Background Accents */
+.bg-radial-light {
+  background-image: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.08) 0%, transparent 60%),
+                    radial-gradient(circle at 80% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+}
+
+.bg-radial-dark {
+  background-image: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.1) 0%, transparent 60%),
+                    radial-gradient(circle at 90% 40%, rgba(157, 78, 221, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 10% 80%, rgba(0, 255, 157, 0.06) 0%, transparent 50%);
+}
